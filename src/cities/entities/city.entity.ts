@@ -1,17 +1,19 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Capital } from "src/capital/entities/capital.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name:'cities'})
 export class City {
-    @PrimaryGeneratedColumn()
-    id:number;
+    @PrimaryGeneratedColumn('uuid')
+    id:string;
 
-    @Column({unique:true})
+    @Column('varchar',{length : 200})
     name: string;
 
-    @Column({type:'text', nullable:true})
+    @Column('varchar',{length : 200})
     description: string;
 
-    @Column({type:'boolean' ,default:true})
-    active:boolean;
+    @OneToOne(()=> Capital, capital => capital.city,{onDelete:"CASCADE",onUpdate:"CASCADE"})
+    @JoinColumn()
+    capital:Capital;
 
 }

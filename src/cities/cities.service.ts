@@ -22,11 +22,11 @@ export class CitiesService {
     return await this.cityRepository.find();
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return await this.cityRepository.findOne({where:{id}});
   }
 
-  async update(id: number, updateCityDto: UpdateCityDto) {
+  async update(id: string, updateCityDto: UpdateCityDto) {
     const city = await this.findOne(id);
     if(!city){
       throw new NotFoundException();
@@ -36,7 +36,7 @@ export class CitiesService {
     return await this.cityRepository.save(city);
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const city = await this.findOne(id);
     if(!city){
       throw new NotFoundException();
