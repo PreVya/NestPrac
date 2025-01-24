@@ -1,3 +1,4 @@
+import { Common } from 'src/commons/entities/common.entity';
 import { Capital } from 'src/capital/entities/capital.entity';
 import {
   Column,
@@ -8,7 +9,7 @@ import {
 } from 'typeorm';
 
 @Entity({ name: 'cities' })
-export class City {
+export class City extends Common {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
